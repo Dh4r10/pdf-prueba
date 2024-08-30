@@ -8,6 +8,9 @@ import {
   StyleSheet,
 } from '@react-pdf/renderer';
 import ministerioLogo from '/public/img/logo_minis.png';
+import CursoCell from './components/CursoCell';
+import { valuesPrint } from './valuesPrint';
+import Firmas from './components/Firmas';
 
 const styles = StyleSheet.create({
   page: {
@@ -84,40 +87,14 @@ const styles = StyleSheet.create({
   textBold: {
     fontWeight: 'bold',
   },
+  textTransform: {
+    transform: 'matrix(0, -1, 1, 0, 0, 0)',
+  },
+  footer: {
+    marginTop: 30,
+    fontSize: 8,
+  },
 });
-
-const valuesPrint = {
-  tipoGestion: 'Privada',
-  codigoModular: '531133',
-  cursos: [
-    {
-      id: 1,
-      nombre: 'Diseño de Software',
-      unidad_didactica_1: 'Interes',
-      unidad_didactica_2: 'Creatividad',
-      alumnos: [
-        { id: 1, dni: '12345678', nombres: 'Juan Perez', sexo: 'M', edad: 20 },
-        { id: 2, dni: '87654321', nombres: 'Maria Lopez', sexo: 'F', edad: 22 },
-      ],
-    },
-    {
-      id: 2,
-      nombre: 'Gestion de Proyectos',
-      unidad_didactica_1: 'Valores',
-      unidad_didactica_2: 'Imaginacion',
-      alumnos: [
-        {
-          id: 4,
-          dni: '33345678',
-          nombres: 'Diego Francisco',
-          sexo: 'M',
-          edad: 25,
-        },
-        { id: 7, dni: '91654321', nombres: 'Sofia Lopez', sexo: 'F', edad: 21 },
-      ],
-    },
-  ],
-};
 
 function PDF() {
   return (
@@ -135,7 +112,6 @@ function PDF() {
             <Text style={{ fontSize: 12 }}>PERIODO LECTIVO: 2016 - I</Text>
           </View>
         </View>
-
         <View style={[styles.section, { borderBottom: 0 }]}>
           <View
             style={[styles.sectionHeader, { borderRight: '1px solid black' }]}
@@ -319,23 +295,16 @@ function PDF() {
           {/* Fila 5 */}
           <View style={styles.row}>
             <View style={[styles.cell, { width: '60%' }]}>
-              <View
-                style={[
-                  styles.cell,
-                  styles.yellowCell,
-                  styles.text,
-                  { width: '50%', borderRight: 0 },
-                ]}
-              >
-                <View style={[styles.cell, styles.text, { width: '70%' }]}>
+              <View style={[styles.cell, styles.text, { width: '50%' }]}>
+                <View
+                  style={[styles.cell, styles.yellowCell, { width: '50.1%' }]}
+                >
                   <Text style={{ padding: 6 }}>
-                    Lugar donde se presta el servicio educativo
+                    Direccion del IES/IEST (Sede principal)
                   </Text>
                 </View>
-                <View style={[styles.cell, styles.text, { width: '30%' }]}>
-                  <Text style={{ padding: 6, borderRight: 0 }}>
-                    Sede principal
-                  </Text>
+                <View style={[styles.cell, { width: '49.9%', borderRight: 0 }]}>
+                  <Text style={{ padding: 6 }}></Text>
                 </View>
               </View>
               <View
@@ -344,37 +313,30 @@ function PDF() {
                   { width: '50%', flexDirection: 'row', borderRight: 0 },
                 ]}
               >
-                <View style={[styles.cell, styles.text, { width: '20%' }]}>
-                  <Text style={{ padding: 6 }}></Text>
-                </View>
                 <View
-                  style={[styles.text, styles.yellowCell, { width: '20%' }]}
+                  style={[
+                    styles.cell,
+                    styles.text,
+                    styles.yellowCell,
+                    { width: '25%' },
+                  ]}
                 >
                   <Text style={{ padding: 6 }}>Filial</Text>
                 </View>
-                <View
-                  style={[
-                    styles.cell,
-                    styles.text,
-                    { width: '20%', borderLeft: '1px solid black' },
-                  ]}
-                >
+                <View style={[styles.text, { width: '25%' }]}>
                   <Text style={{ padding: 6 }}></Text>
                 </View>
                 <View
-                  style={[styles.text, styles.yellowCell, { width: '20%' }]}
-                >
-                  <Text style={{ padding: 6, borderRight: '1px solid black' }}>
-                    Local
-                  </Text>
-                </View>
-                <View
                   style={[
                     styles.cell,
                     styles.text,
-                    { width: '20%', borderLeft: 0, borderRight: 0 },
+                    styles.yellowCell,
+                    { width: '25%', borderLeft: '1px solid black' },
                   ]}
                 >
+                  <Text style={{ padding: 6 }}>Local</Text>
+                </View>
+                <View style={[styles.text, { width: '25%' }]}>
                   <Text style={{ padding: 6 }}></Text>
                 </View>
               </View>
@@ -411,12 +373,12 @@ function PDF() {
 
           {/* Fila 6 */}
           <View style={styles.row}>
-            <View style={[styles.cell, { width: '60%' }]}>
+            <View style={[styles.cell, { width: '100%' }]}>
               <View
                 style={[
                   styles.cell,
                   styles.text,
-                  { width: '50%', flexDirection: 'column', height: 90 },
+                  { width: '30%', flexDirection: 'column', height: 90 },
                 ]}
               >
                 <View
@@ -597,7 +559,7 @@ function PDF() {
                   </View>
                 </View>
               </View>
-              <View style={[styles.text, { width: '50%', height: 90 }]}>
+              <View style={[styles.text, { width: '70%', height: 90 }]}>
                 <View
                   style={{ height: '25%', borderBottom: '1px solid black' }}
                 >
@@ -618,7 +580,7 @@ function PDF() {
                       styles.text,
                       styles.cell,
                       styles.yellowCell,
-                      { width: '25%' },
+                      { width: '10.7%' },
                     ]}
                   >
                     <Text style={{ padding: 6 }}>Vraem</Text>
@@ -642,7 +604,7 @@ function PDF() {
                       styles.text,
                       styles.cell,
                       styles.yellowCell,
-                      { width: '25%' },
+                      { width: '10.7%' },
                     ]}
                   >
                     <Text style={{ padding: 6 }}>Huallaga</Text>
@@ -656,23 +618,12 @@ function PDF() {
                 </View>
               </View>
             </View>
-            <View
-              style={[
-                styles.cell,
-                styles.text,
-                {
-                  width: '40%',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                },
-              ]}
-            >
-              <Text style={{ padding: 6 }}>UNIDADES DIDÁCTICAS</Text>
-            </View>
           </View>
         </View>
 
-        <View style={styles.section}>
+        {/* ITERACIÓN DE PLAN DE ESTUDIOS */}
+        <View style={[styles.section, { borderBottom: 0 }]}>
+          {/* ITERACIÓN DE CURSOS */}
           <View style={[styles.row, { height: 160 }]}>
             <View style={[styles.cell, styles.grayCell, { width: '2%' }]}>
               <Text>Nº</Text>
@@ -692,7 +643,7 @@ function PDF() {
               style={[
                 styles.cell,
                 styles.grayCell,
-                { width: '39.05%', textAlign: 'center' },
+                { width: '21.02%', textAlign: 'center' },
               ]}
             >
               <Text style={{ padding: 6 }}>
@@ -721,623 +672,29 @@ function PDF() {
               style={[
                 styles.cell,
                 styles.grayCell,
-                { width: '6%', textAlign: 'center', flexDirection: 'column' },
+                { width: '6%', textAlign: 'center' },
               ]}
             >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '85%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>Persona con discapacidad</Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <View
-                  style={[
-                    styles.cell,
-                    {
-                      width: '50%',
-                      textAlign: 'center',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    },
-                  ]}
-                >
-                  <Text style={{ padding: 6 }}>Si</Text>
-                </View>
-                <View
-                  style={[
-                    styles.cell,
-                    {
-                      width: '50%',
-                      textAlign: 'center',
-                      borderRight: 0,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    },
-                  ]}
-                >
-                  <Text style={{ padding: 6 }}>No</Text>
-                </View>
-              </View>
+              <Text style={{ padding: 6 }}>
+                Persona con discapacidad (SI/NO)
+              </Text>
             </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>2</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>1</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>3</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>4</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>5</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>6</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>7</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>8</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>9</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>10</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>11</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.cell,
-                styles.grayCell,
-                { width: '3%', textAlign: 'center', flexDirection: 'column' },
-              ]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '84.75%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'white',
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    padding: 6,
-                    transform: 'rotate(270deg)',
-                    fontSize: 7,
-                  }}
-                ></Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  {
-                    width: '100%',
-                    height: '15.25%',
-                    textAlign: 'center',
-                    borderRight: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid black',
-                  },
-                ]}
-              >
-                <Text style={{ padding: 6 }}>12</Text>
-              </View>
-            </View>
+            {valuesPrint.cursos.map((curso, item) => {
+              return (
+                <CursoCell
+                  styles={styles}
+                  nombreCurso={curso.nombre}
+                  item={item + 1}
+                  key={curso.id}
+                />
+              );
+            })}
             <View
               style={[
                 styles.cell,
                 styles.grayCell,
                 {
-                  width: '4%',
+                  width: '10.03%',
                   textAlign: 'center',
                   flexDirection: 'column',
                   borderRight: 0,
@@ -1369,120 +726,121 @@ function PDF() {
             </View>
           </View>
 
-          <View style={styles.row}>
-            <View style={[styles.rowCell, { width: '2%' }]}>
-              <Text style={{ padding: 6 }}>1</Text>
+          {/* ITERACIÓN DE ALUMNOS */}
+          {valuesPrint.alumnos.map((alumno, item) => (
+            <View key={alumno.id} style={styles.row}>
+              <View style={[styles.rowCell, { width: '2%' }]}>
+                <Text style={{ padding: 6 }}>{item + 1}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '6.95%' }]}>
+                <Text>{alumno.dni}</Text>
+              </View>
+              <View
+                style={[
+                  styles.rowCell,
+                  {
+                    width: '21.02%',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                  },
+                ]}
+              >
+                <Text style={{ textAlign: 'left', padding: 6 }}>
+                  {alumno.nombre}
+                </Text>
+              </View>
+              <View style={[styles.rowCell, { width: '3%' }]}>
+                <Text>{alumno.sexo}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '3%' }]}>
+                <Text>{alumno.edad}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '6%' }]}>
+                <Text>{alumno.personaDiscapacidad}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_1 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_2 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_3 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_4 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_5 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_6 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_7 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_8 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_9 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_10 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_11 ? 'X' : ''}</Text>
+              </View>
+              <View style={[styles.rowCell, { width: '4%' }]}>
+                <Text>{!!alumno.curso_12 ? 'X' : ''}</Text>
+              </View>
+              <View
+                style={[
+                  styles.rowCell,
+                  {
+                    width: '10.03%',
+                    justifyContent: 'flex-start',
+                    alignItems: 'flex-start',
+                  },
+                ]}
+              >
+                <Text style={{ textAlign: 'left', padding: 5 }}>
+                  {alumno.observaciones}
+                </Text>
+              </View>
             </View>
-            <View style={[styles.rowCell, { width: '6.95%' }]}>
-              <Text>746231</Text>
-            </View>
-            <View style={[styles.rowCell, { width: '39.05%' }]}>
-              <Text>asdadasd</Text>
-            </View>
-            <View style={[styles.rowCell, { width: '3%' }]}>
-              <Text>M</Text>
-            </View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '3%' }]}></View>
-            <View style={[styles.rowCell, { width: '4%' }]}></View>
-          </View>
+          ))}
         </View>
 
-        {/* {valuesPrint.cursos.map((curso) => (
-          <View key={curso.id} style={styles.section}>
-            <View style={[styles.row, { height: 56 }]}>
-              <View style={[styles.cell, styles.grayCell, { width: '2%' }]}>
-                <Text>Nº</Text>
-              </View>
-              <View style={[styles.cell, styles.grayCell, { width: '5.5%' }]}>
-                <Text>Número de documento de identidad</Text>
-              </View>
-              <View style={[styles.cell, styles.grayCell, { width: '40.5%' }]}>
-                <Text>APELLIDOS Y NOMBRES (en orden alfabético)</Text>
-              </View>
-              <View style={[styles.cell, styles.grayCell, { width: '3%' }]}>
-                <Text>SEXO (F/M)</Text>
-              </View>
-              <View style={[styles.cell, styles.grayCell, { width: '3%' }]}>
-                <Text>EDAD</Text>
-              </View>
-              <View style={[styles.cell, styles.grayCell, { width: '6.05%' }]}>
-                <Text>PERSONA CON DISCAPACIDAD</Text>
-                <View style={{ flexDirection: 'row' }}>
-                  <View
-                    style={[styles.cell, styles.grayCell, { width: '50%' }]}
-                  >
-                    <Text>Si</Text>
-                  </View>
-                  <View
-                    style={[styles.cell, styles.grayCell, { width: '50%' }]}
-                  >
-                    <Text>No</Text>
-                  </View>
-                </View>
-              </View>
-              <View style={[styles.cell, { width: '39.95%' }]}>
-                <View style={[styles.cell, { width: '85%' }]}>
-                  <View style={[styles.cell, { width: '9.09%' }]}>
-                    <Text>{curso.unidad_didactica_1}</Text>
-                  </View>
-                  <View style={[styles.cell, { width: '9.09%' }]}>
-                    <Text>{curso.unidad_didactica_2}</Text>
-                  </View>
-            
-                </View>
-                <View style={[styles.cell, styles.grayCell, { width: '15%' }]}>
-                  <Text>Observaciones</Text>
-                </View>
-              </View>
+        <View wrap={false} style={[styles.footer]}>
+          <View
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'flex-end',
+            }}
+          >
+            <View style={{ display: 'flex', flexDirection: 'row' }}>
+              <Text>Lugar y fecha:</Text>
+              <Text>{'  '}</Text>
+              <Text>YURIMAGUAS, 14 de Mayo de 2022.</Text>
             </View>
-
-            {curso.alumnos.map((alumno, item) => (
-              <View key={alumno.id} style={styles.row}>
-                <View style={[styles.cell, { width: '2%' }]}>
-                  <Text>{item}</Text>
-                </View>
-                <View style={[styles.cell, { width: '5.5%' }]}>
-                  <Text>{alumno.dni}</Text>
-                </View>
-                <View style={[styles.cell, { width: '40.5%' }]}>
-                  <Text>{alumno.nombres}</Text>
-                </View>
-                <View style={[styles.cell, { width: '3%' }]}>
-                  <Text>{alumno.sexo}</Text>
-                </View>
-                <View style={[styles.cell, { width: '3%' }]}></View>
-                <View style={[styles.cell, { width: '2.95%' }]}></View>
-                <View style={[styles.cell, { width: '3.1%' }]}></View>
-                <View style={[styles.cell, { width: '3.06%' }]}></View>
-                <View style={[styles.cell, { width: '3.1%' }]}></View>
-                <View style={[styles.cell, { width: '3.06%' }]}></View>
-                <View style={[styles.cell, { width: '3.1%' }]}></View>
-                <View style={[styles.cell, { width: '3.1%' }]}></View>
-                <View style={[styles.cell, { width: '3.06%' }]}></View>
-                <View style={[styles.cell, { width: '3.1%' }]}></View>
-                <View style={[styles.cell, { width: '3.06%' }]}></View>
-                <View style={[styles.cell, { width: '3.1%' }]}></View>
-                <View style={[styles.cell, { width: '3.06%' }]}></View>
-                <View style={[styles.cell, { width: '3.2%' }]}></View>
-                <View style={[styles.cell, { width: '5.91%' }]}></View>
-              </View>
-            ))}
           </View>
-        ))} */}
+          <View style={{ display: 'flex', flexDirection: 'row' }}>
+            <Firmas firmante={'Director General'} />
+            <Firmas firmante={'Jefe de Unidad Académica'} />
+            <Firmas firmante={'Secretario Académico'} />
+          </View>
+          <View style={{ display: 'flex', paddingTop: 40 }}>
+            <Text style={{ padding: 6 }}>
+              NOTA: La inscripción de los estudiantes se hará en orden
+              alfabético, cuidando de anotar: 1° Apellido paterno, 2° Apellido
+              materno y 3° Nombres del matriculado, tal como figura en su
+              documento de identidad. (*) Para el caso de los planes de estudios
+              por asignatura deben registrar la denominación de la asignatura .
+            </Text>
+          </View>
+        </View>
       </Page>
     </Document>
   );
